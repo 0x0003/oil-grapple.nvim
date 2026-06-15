@@ -2,7 +2,7 @@ local M = {}
 
 local ns = vim.api.nvim_create_namespace('oil-grapple')
 
----@type { prefix?: string, highlight?: string }
+---@alias config { prefix?: string, highlight?: string }
 local config
 
 ---@param buffer integer
@@ -33,7 +33,7 @@ local function refresh_all()
       :each(refresh_buf)
 end
 
----@param opts? { prefix?: string, highlight?: string }
+---@param opts config
 function M.setup(opts)
   config = vim.tbl_deep_extend('force', {
     prefix = '',
@@ -46,7 +46,7 @@ function M.setup(opts)
     pattern = 'OilEnter',
     group = group,
     callback = function(ev)
-      local buf = ev.data and ev.data.buf ---@type integer?
+      local buf = ev.data and ev.data.buf
       if buf and vim.api.nvim_buf_is_valid(buf) then
         vim.api.nvim_buf_call(buf, function() refresh_buf(buf) end)
       end
