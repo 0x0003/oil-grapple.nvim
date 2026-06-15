@@ -1,0 +1,9 @@
+{
+  "workspace": {
+    "checkThirdParty": false,
+    "library": [
+      "$VIMRUNTIME",
+      "$HOME/.local/share/nvim/site/pack"
+    ]
+  }
+}
